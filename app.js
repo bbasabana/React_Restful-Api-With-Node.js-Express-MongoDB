@@ -4,23 +4,21 @@ const app =  express()
 const moongose = require('mongoose');
 require('dotenv/config');
 
-// ROutes
+// Import Routes
+const PostRoute = require('./routes/posts');
 
+// ROutes
+app.use('/posts', PostRoute);
 app.get('/', (req, res) => {
     res.send('we are on home')
 });
 
-app.get('/post', () => {
-    console.log('post for BB')
-})
 
 // DATABASES MONGODEB
 
-moongose.connect(
-     process.env.DB_CONNECTION, 
-    { useNewUrlParser: true },
-    () => console.log('connnected to DB')
-    );
+moongose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true },() => 
+  console.log('connnected to DB')
+);
 
 
 // listen server
