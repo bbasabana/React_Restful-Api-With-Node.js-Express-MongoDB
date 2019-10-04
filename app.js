@@ -2,6 +2,7 @@ const express = require('express');
 
 const app =  express()
 const moongose = require('mongoose');
+require('dotenv/config');
 
 // ROutes
 
@@ -15,10 +16,11 @@ app.get('/post', () => {
 
 // DATABASES MONGODEB
 
-moongose.connect('mongodb+srv://BBasabana:BBasabana%402019@cluster0-kjqor.mongodb.net/admin?retryWrites=true&w=majority', 
-{ useNewUrlParser: true },
- () => console.log('connnected to DB')
- );
+moongose.connect(
+     process.env.DB_CONNECTION, 
+    { useNewUrlParser: true },
+    () => console.log('connnected to DB')
+    );
 
 
 // listen server
