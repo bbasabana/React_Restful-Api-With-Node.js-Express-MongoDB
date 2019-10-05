@@ -2,13 +2,16 @@ const express = require('express');
 
 const app =  express()
 const moongose = require('mongoose');
+const bodyParser = require('body-parser');
 require('dotenv/config');
 
-// Import Routes
+app.use(bodyParser.json());
+// Import Routers
 const PostRoute = require('./routes/posts');
 
-// ROutes
 app.use('/posts', PostRoute);
+
+// Routes
 app.get('/', (req, res) => {
     res.send('we are on home')
 });
